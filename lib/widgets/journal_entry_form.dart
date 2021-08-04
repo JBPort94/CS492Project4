@@ -7,7 +7,7 @@ import '../db/journal_entry_dto.dart';
 import '../models/journal_entry.dart';
 
 class JournalEntryForm extends StatefulWidget {
-  final entry = JournalEntry();
+  //late final entry = JournalEntry();
   final entryInput = JournalEntryDTO();
   final modifier;
 
@@ -69,7 +69,7 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
       final dbManager = DatabaseManager.getInstance();
 
       _entryKey.currentState?.save();
-      dbManager.saveEntry(entry: widget.entryInput);
+      dbManager.saveJournalEntry(entry: widget.entryInput);
       widget.modifier(JournalEntry(
         title: widget.entryInput.title,
         body: widget.entryInput.body,
@@ -92,7 +92,7 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
             border: OutlineInputBorder()
           ),
           onSaved: (input) {
-            widget.entryInput.title = input;
+            widget.entryInput.title = input!;
           },
         ),
       );
@@ -108,7 +108,7 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
             border: OutlineInputBorder()
           ),
           onSaved: (input) {
-            widget.entryInput.body = input;
+            widget.entryInput.body = input!;
           },
         ),
       );
@@ -125,7 +125,8 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
           ),
           keyboardType: TextInputType.number,
           onSaved: (input) {
-            widget.entryInput.rating = input;
+            int? value = int.tryParse(input!);
+            widget.entryInput.rating = value!;
           },
           validator: (input) {
             if(input == null || input.isEmpty){

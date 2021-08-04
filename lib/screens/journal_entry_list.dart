@@ -24,7 +24,7 @@ class JournalEntryList extends StatefulWidget {
 }
 
 class _JournalEntryListState extends State<JournalEntryList> {
-  Journal journal;
+  late Journal journal;
 
   @override
   void initState() {
@@ -57,11 +57,11 @@ class _JournalEntryListState extends State<JournalEntryList> {
 
   void entryView(BuildContext context, JournalEntry data) {
     Navigator.push(context,
-      MaterialPageRoute(builder: (context) => JournalEntry(data: data)));
+      MaterialPageRoute(builder: (context) => NewEntry(data: data)));
   }
 
   void journalUpdate(entry) {
-    journal ??= Journal();
+    journal = Journal(entries: []);
     setState(() {
       journal.addEntry(entry);
     });
