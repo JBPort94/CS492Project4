@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/journal_scaffold.dart';
+import '../models/journal_entry.dart';
 
 class JournalEntryScreen extends StatelessWidget {
-  static const route = '/journalEntry';
+  static const route = 'journalEntry';
 
   final entryData;
   final modifier;

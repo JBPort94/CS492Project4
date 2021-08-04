@@ -24,7 +24,7 @@ class JournalEntryList extends StatefulWidget {
 }
 
 class _JournalEntryListState extends State<JournalEntryList> {
-  late Journal journal;
+  Journal journal = Journal(entries: []);
 
   @override
   void initState() {
@@ -52,16 +52,16 @@ class _JournalEntryListState extends State<JournalEntryList> {
   });
 
   void newEntry(BuildContext context) {
-    Navigator.of(context).pushNamed('/newEntryForm', arguments: journalUpdate);
+    Navigator.of(context).pushNamed(NewEntry.route, arguments: journalUpdate);
   }
 
   void entryView(BuildContext context, JournalEntry data) {
-    Navigator.push(context,
-      MaterialPageRoute(builder: (context) => NewEntry(data: data)));
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => JournalEntryScreen(entryData: data)));
   }
 
   void journalUpdate(entry) {
-    journal = Journal(entries: []);
+    //journal = Journal(entries: []);
     setState(() {
       journal.addEntry(entry);
     });
@@ -82,7 +82,7 @@ class _JournalEntryListState extends State<JournalEntryList> {
   }
 
   String chooseTitle() {
-    if(journal == null) {
+    if(journal.entries.isEmpty) {
       widget.title = 'Welcome';
       return widget.title;
     } else {
@@ -96,7 +96,7 @@ class _JournalEntryListState extends State<JournalEntryList> {
   }
 
   Widget chooseLayout(BuildContext context, layout) {
-    if(journal == null) {
+    if(journal.entries.isEmpty) {
       return Welcome();
     } else {
       return entryList(context, layout);
@@ -131,8 +131,20 @@ class _JournalEntryListState extends State<JournalEntryList> {
   Widget entriesMasterView(index) {
     return Row(
       children: [
-
-      ]
+        Flexible(
+          flex: 1,
+          child: Card(
+            child: ListTile(
+              title: Text('${journal.entries[index].title}'),
+              subtitle: Text('${journal.entries[index].date}')
+            ),
+          ),
+        ),
+        Flexible(
+          flex: 3,
+          child: Text("Details Here")
+        )
+      ],
     );
   }
 }

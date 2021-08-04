@@ -120,7 +120,7 @@ class _JournalEntryFormState extends State<JournalEntryForm> {
         child: TextFormField(
           autofocus: true,
           decoration: InputDecoration(
-            labelText: 'Title:',
+            labelText: 'Rating:',
             border: OutlineInputBorder()
           ),
           keyboardType: TextInputType.number,

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'screens/journal_entry_list.dart';
 import 'screens/new_entry.dart';
+import 'screens/journal_entry.dart';
 import 'widgets/journal_entry_form.dart';
 
 class App extends StatefulWidget {
@@ -24,7 +25,8 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     final routes = {
       JournalEntryList.route: (context) => JournalEntryList(modifier: themeChange, state: theme),
-      NewEntry.route: (context) => NewEntry(modifier: themeChange, state: theme)
+      NewEntry.route: (context) => NewEntry(modifier: themeChange, state: theme),
+      JournalEntryScreen.route: (context) => JournalEntryScreen(modifier: themeChange, state: theme)
     };
 
     return MaterialApp(
@@ -33,7 +35,6 @@ class _AppState extends State<App> {
         primarySwatch: Colors.blue,
         brightness: getTheme(),
       ),
-
       routes: routes,  
     );
   }

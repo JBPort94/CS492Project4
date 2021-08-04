@@ -4,7 +4,7 @@ import '../widgets/journal_entry_form.dart';
 import '../widgets/journal_scaffold.dart';
 
 class NewEntry extends StatelessWidget {
-  static const route = '/newEntry';
+  static const route = 'newEntry';
 
   final data;
   final modifier;
