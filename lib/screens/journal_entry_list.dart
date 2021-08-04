@@ -44,7 +44,7 @@ class _JournalEntryListState extends State<JournalEntryList> {
     }
   }
 
-  final entryList = List<Map>.generate(200, (index) {
+  final entryMap = List<Map>.generate(200, (index) {
     return {
       'title' : 'Journal Entry $index',
       'subtitle' : 'Subtitle Text $index'
@@ -92,7 +92,7 @@ class _JournalEntryListState extends State<JournalEntryList> {
   }
 
   Widget layoutSwitch(BuildContext context, BoxConstraints constraints) {
-    return contstraints.maxWidth < 600 ? chooseLayout(context, entriesListView) : chooseLayout(context, entriesMasterView);
+    return constraints.maxWidth < 600 ? chooseLayout(context, entriesListView) : chooseLayout(context, entriesMasterView);
   }
 
   Widget chooseLayout(BuildContext context, layout) {
@@ -129,6 +129,10 @@ class _JournalEntryListState extends State<JournalEntryList> {
   }
 
   Widget entriesMasterView(index) {
-    
+    return Row(
+      children: [
+
+      ]
+    );
   }
 }
